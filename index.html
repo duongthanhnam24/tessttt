@@ -20,7 +20,10 @@
 
     const callGPT = async () => {
         const input = document.querySelector('.input');
-
+        const elementexsit = document.querySelector('h1')
+        if(elementexsit) {
+            element.remove();
+        }
         const res = await fetch('http://localhost:8080/', {
             method: 'POST',
             headers: {
@@ -31,8 +34,7 @@
             })
         }).then(res => res.json())
         document.querySelector('.output').innerText = `${res}`
-
-        let paragraph = document.querySelector("h1") ? document.querySelectorAll("h1") : document.createElement("h1");
+        let paragraph =  document.createElement("h1");
         paragraph.textContent = "day la ket qua";
         document.body.appendChild(paragraph);
     }
