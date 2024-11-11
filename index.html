@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <input class="input" />
+        <button onclick="callGPT()">SEND</button>
+        <p class="output">
+        </p>
+    </div>
+
+</body>
+<script>
+
+    const callGPT = async () => {
+        const input = document.querySelector('.input');
+
+        const res = await fetch('http://localhost:8080/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                prompt: input.value
+            })
+        }).then(res => res.json())
+        document.querySelector('.output').innerText = `${res}`
+
+        let paragraph = document.querySelector("h1") ? document.querySelectorAll("h1") : document.createElement("h1");
+        paragraph.textContent = "day la ket qua";
+        document.body.appendChild(paragraph);
+    }
+</script>
+
+</html>
